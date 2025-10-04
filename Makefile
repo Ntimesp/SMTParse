@@ -83,5 +83,9 @@ random_NRA:$(smtlib_parse_r_o)  src/random_NRA.cc
 	mkdir -p $(BIN_DIR)
 	$(CXX) $(smtlib_parse_REL) $(smtlib_parse_FPIC) $(IPATHS) $(smtlib_parse_r_o) src/$@.cc -o  $(BIN_DIR)/$@  $(LDFLAGS) $(clpolylib) 
 
+parsertest:$(smtlib_parse_r_o)  test/parsertest.cc
+	mkdir -p $(BIN_DIR)
+	$(CXX) $(smtlib_parse_REL) $(smtlib_parse_FPIC) $(IPATHS) $(smtlib_parse_r_o) test/$@.cc -o  $(BIN_DIR)/$@  $(LDFLAGS) $(clpolylib)
+
 clean:
 	rm -rf $(smtlib_parse_d_o) $(smtlib_parse_r_o) $(smtlib_parse_LIB_DIR)/smtlib_parse/NRA_op.so $(BIN_DIR)/*

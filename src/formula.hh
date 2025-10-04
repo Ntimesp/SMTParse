@@ -179,7 +179,7 @@ namespace smt{
     inline bool is_formula_op(const std::string& s)
     {
         static const std::set<std::string> op_l=
-        {"+","-","*","/","and","or","not",">","<","<=",">=","="};
+        {"+","-","*","/","and","or","not",">","<","<=",">=","=","=>"};
         return (op_l.find(s)!=op_l.end());
             
     }

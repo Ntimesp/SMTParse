@@ -865,6 +865,14 @@ namespace smt{
             auto f1=formula_not(f->elements()[0]);
             return formula_normal(f1);
         }
+        std::vector<std::vector<std::pair<pformula,char>>> formula_normal_implies(const pformula&f)
+        {
+            if (f->head()!="=>" || f->size()!=2)
+                throw std::invalid_argument("formula_normal_implies 长度错误");
+            auto f1=std::make_shared<formula>("not",std::vector<pformula>({f->elements()[0]}));
+            auto f2=f->elements()[1];
+            return formula_normal(std::make_shared<formula>("or",std::vector<pformula>({f1,f2})));
+        }
         std::vector<std::vector<std::pair<pformula,char>>> formula_normal_and(const pformula&f)
         {
             assert(f->head()=="and");
@@ -909,6 +917,7 @@ namespace smt{
             ,{"or",formula_normal_or}
             ,{"not"  ,formula_normal_not}
             ,{"var", formula_normal_var}
+            ,{"=>", formula_normal_implies}
         };
         std::vector<std::vector<std::pair<pformula,char>>> formula_normal(const pformula&f)
         {
