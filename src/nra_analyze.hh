@@ -187,7 +187,8 @@ namespace smt{
         NRA_CNF smtlib_to_cnf(const smtlib::smtlib&, bool is_no_unsimple_eq=false);
         std::vector<std::vector<std::pair<pformula,char>>> formula_normal(const pformula&f);
 
-        
+        double assign_poly(const std::map<clpoly::variable,double>& X,
+                   const clpoly::polynomial_ZZ& p);
         
        
     }
