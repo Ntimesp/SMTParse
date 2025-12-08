@@ -6,7 +6,7 @@
 
 int main(int argc, char const *argv[])
 {
-    std::string file_name="../smalltest=>.smt2";
+    std::string file_name="benchmark/test/smalltest=>.smt2";
     bool is_rename=true;
 
     auto lib=smt::smtlib::read_smtlib2(file_name,is_rename);
