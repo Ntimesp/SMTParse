@@ -37,6 +37,18 @@ namespace smt{
             {"<=",">"}
         };
         {
+            //单独处理 =>
+            if (f->head()=="=>")
+            {
+                if (f->size()!=2)
+                    throw std::invalid_argument("formula_normal_implies 长度错误");
+                return std::make_shared<formula>("and",std::vector<pformula>({
+                    f->elements()[0],
+                    formula_not(f->elements()[1])
+                }));
+            }
+        }
+        {
             auto ptr=oppair1.find(f->head());
             if (ptr!=oppair1.end())
             {
