@@ -1012,7 +1012,8 @@ namespace smt{
 
         /*
             assign(A && B)=assign(A)+assign(B);
-            assign(A || B)=assign(A)*assign(B);
+            // 乘法很容易溢出改成 min
+            assign(A || B)=min(assign(A),assign(B));
             assign(f>0)={
                 (assign(f)>dl_B)? 0 :(assign(f)-dl_B)^2+ dl_a;
             };
@@ -1050,7 +1051,8 @@ namespace smt{
 
         /*
             assign(A && B)=assign(A)+assign(B);
-            assign(A || B)=assign(A)*assign(B);
+            // 乘法很容易溢出改成 min
+            assign(A || B)=min(assign(A),assign(B));
             assign(f>0)={
                 (assign(f)>dl_B)? 0 :(assign(f)-dl_B)^2+ dl_a;
             };
@@ -1078,7 +1080,9 @@ namespace smt{
                 double tmp=1;
                 for (auto &j:i)
                 {
-                    tmp*=assign_op(X,f_ans[j.first],j.second,dl_B,dl_a,deq_B,deq_a);
+                    // tmp*=assign_op(X,f_ans[j.first],j.second,dl_B,dl_a,deq_B,deq_a);
+                    // 乘法很容易溢出改成 min
+                    tmp=std::min(tmp,assign_op(X,f_ans[j.first],j.second,dl_B,dl_a,deq_B,deq_a));
                     if (tmp==0)
                         break;
                 }

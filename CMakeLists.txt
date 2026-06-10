@@ -6,8 +6,10 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type" FORCE)
 endif()
 
+# 设置 C++ 标准
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 # 生成位置无关代码，因为可能需要编译成动态库
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
